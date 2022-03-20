@@ -1,14 +1,22 @@
 import { data } from "../SpeakerData";
 
-const Session = (props) => {
-  const { title, room } = props;
-
+const Session = ({ title, room }) => {
   return (
     <span className=" session w-100">
-      {title} <strong>Room: {room}</strong>
+      {title} <strong>Room: {room.name}</strong>
     </span>
   );
 };
+
+const Sessions = (props) => {
+  const { sessions } = props;
+  return (
+    <div className="sessionBox card h-250">
+      <Session {...sessions[0]} />
+    </div>
+  );
+};
+
 
 const IndexPage = () => {
   return (
@@ -51,12 +59,7 @@ const IndexPage = () => {
                     </p>
                   </div>
                 </div>
-                <div className=" sessionBox card h-250">
-                  <Session
-                    title={sessions[0].title}
-                    room={sessions[0].room.name}
-                  />
-                </div>
+                <Sessions sessions={sessions} />
               </div>
             </div>
           );
